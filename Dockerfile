@@ -1,9 +1,9 @@
 FROM node:12.18.1
-ENV NODE_ENV=development 
+ENV NODE_ENV=production 
 ENV PORT=5551
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
-RUN npm install --development
+RUN npm install --production
 
 #RUN npm start
 COPY . .
