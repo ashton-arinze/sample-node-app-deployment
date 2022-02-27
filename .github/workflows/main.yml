@@ -52,7 +52,7 @@ jobs:
 
       - name: Change tag and push changes
         run: |
-          cd k8s-manifests
+          cd kubernetes
           yq eval -i ".image.tag = \"${{github.sha}}\"" kubernetes/argo-cd/sample-fullstack-app.yml
           head kubernetes/argo-cd/sample-fullstack-app.yml
 
