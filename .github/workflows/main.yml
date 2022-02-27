@@ -43,20 +43,19 @@ jobs:
           repository: supercharge/docs
           path: resources/docs/2.x
           ref: 2.x
+        
+      - name: Clone GitOps repo 
+        uses: actions/checkout@v2
+        with:
+          repository: "ashton-arinze/kubernetes"
+          path: kubernetes
+          # token: ${{ secrets.my_pat }}
+          ref: main
 
       - name: Install yq
         run: |
           sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.9.3/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
-
-      - name: Checkout
-        uses: actions/checkout@master
-        with:
-          repository: "ashton-arinze/kubernetes"
-          path: ./kubernetes
-          token: ${{ secrets.my_pat }}
-          # ssh-key: ${{ secrets.REPO_K8S_MANIFESTS_SSHKEY }}
-          ref: "main"
 
       - name: Change tag and push changes
         run: |
