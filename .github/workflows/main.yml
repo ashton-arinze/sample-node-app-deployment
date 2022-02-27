@@ -54,8 +54,8 @@ jobs:
         run: |
           cd kubernetes
           ls
-          yq eval -i ".image.tag = \"${{github.sha}}\"" kubernetes/argo-cd/sample-fullstack-app.yml
-          head kubernetes/argo-cd/sample-fullstack-app.yml
+          yq eval -i ".image.tag = \"${{github.sha}}\"" argo-cd/sample-fullstack-app.yml
+          head argo-cd/sample-fullstack-app.yml
 
           git config user.name github-actions
           git config user.email github-actions@github.com
