@@ -55,14 +55,14 @@ jobs:
         run: |
           cd kubernetes
           ls
-          yq eval -i ".image.tag = \"${{github.sha}}\"" argo-cd/sample-fullstack-app.yml
-          head argo-cd/sample-fullstack-app.yml
+          yq eval -i ".spec.template.spec.containers[0].image = \"${{env.DOCKER_REPOSITORY}}:${{ github.sha }}\"" argo-cd/node-app/deployment.yml
+          head argo-cd/node-app/deployment.yml
 
           git config user.name github-actions
           git config user.email github-actions@github.com
           git config pull.rebase false  # merge
-          git add argo-cd/sample-fullstack-app.yml
-          git commit -m "CI - Deployed this ${{github.sha}} version"
+          git add argo-cd/node-app/deployment.yml
+          git commit -m "CI - Deployed Changes with commit sha ${{github.sha}}"
           git fetch
           git pull
           git push
