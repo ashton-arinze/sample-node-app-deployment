@@ -60,7 +60,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git config pull.rebase false  # merge
-          git add kubernetes/argo-cd/sample-fullstack-app.yml
+          git add argo-cd/sample-fullstack-app.yml
           git commit -m "CI - Deployed this ${{github.sha}} version"
           git fetch
           git pull
