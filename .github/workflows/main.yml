@@ -43,10 +43,11 @@ jobs:
           sudo chmod +x /usr/local/bin/yq
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
           repository: ashton-arinze/kubernetes
-          path: "argo-cd"
+          path: ./kubernetes
+          token: ${{ secrets.my_pat }}
           ssh-key: ${{ secrets.REPO_K8S_MANIFESTS_SSHKEY }}
           ref: "main"
 
