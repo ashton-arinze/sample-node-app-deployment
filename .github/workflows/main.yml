@@ -29,8 +29,8 @@ jobs:
     
     - name: Build App
       run: |
-        docker build -t $DOCKER_REPOSITORY:$GITHUB_SHA .
-        docker push $DOCKER_REPOSITORY:$GITHUB_SHA
+        docker build -t $DOCKER_REPOSITORY:$github.sha .
+        docker push $DOCKER_REPOSITORY:$github.sha
   
   deploy: 
     runs-on: ubuntu-latest
@@ -53,14 +53,14 @@ jobs:
       - name: Change tag and push changes
         run: |
           cd k8s-manifests
-          yq eval -i ".image.tag = \"${GITHUB_SHA}\"" argo-cd/sample-fullstack-app.yml
+          yq eval -i ".image.tag = \"${github.sha}\"" argo-cd/sample-fullstack-app.yml
           head argo-cd/sample-fullstack-app.yml
 
           git config user.name github-actions
           git config user.email github-actions@github.com
           git config pull.rebase false  # merge
           git add argo-cd/sample-fullstack-app.yml
-          git commit -m "CI - Deployed this ${{GITHUB_SHA}} version"
+          git commit -m "CI - Deployed this ${{github.sha}} version"
           git fetch
           git pull
           git push
