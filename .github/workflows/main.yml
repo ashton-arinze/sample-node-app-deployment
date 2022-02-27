@@ -1,7 +1,7 @@
 name: Node App Docker Image CI
 env:
-  REPOSITORY_NAME: logicalogbonna
-
+      APPLICATION_NAME: node-sample-application
+      DOCKER_REPOSITORY: logicalogbonna/node-sample-application
 on:
   push:
     branches: [ main ]
@@ -12,9 +12,6 @@ jobs:
   docker-build:
 
     runs-on: ubuntu-latest
-    env:
-      APPLICATION_NAME: node-sample-application
-      DOCKER_REPOSITORY: logicalogbonna/node-sample-application
 
     steps:
     - name: Checkout
