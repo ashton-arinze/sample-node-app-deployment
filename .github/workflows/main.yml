@@ -53,13 +53,14 @@ jobs:
       - name: Change tag and push changes
         run: |
           cd kubernetes
+          ls kubernetes
           yq eval -i ".image.tag = \"${{github.sha}}\"" kubernetes/argo-cd/sample-fullstack-app.yml
           head kubernetes/argo-cd/sample-fullstack-app.yml
 
           git config user.name github-actions
           git config user.email github-actions@github.com
           git config pull.rebase false  # merge
-          git add argo-cd/sample-fullstack-app.yml
+          git add kubernetes/argo-cd/sample-fullstack-app.yml
           git commit -m "CI - Deployed this ${{github.sha}} version"
           git fetch
           git pull
