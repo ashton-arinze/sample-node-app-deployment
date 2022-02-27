@@ -47,7 +47,7 @@ jobs:
         with:
           repository: ashton-arinze/kubernetes
           path: "argo-cd"
-          # ssh-key: ${{ secrets.REPO_K8S_MANIFESTS_SSHKEY }}
+          ssh-key: ${{ secrets.REPO_K8S_MANIFESTS_SSHKEY }}
           ref: "main"
 
       - name: Change tag and push changes
