@@ -45,7 +45,6 @@ jobs:
           repository: "ashton-arinze/kubernetes"
           path: kubernetes
           token: ${{ secrets.my_pat }}
-          # ssh-key: ${{ secrets.REPO_K8S_MANIFESTS_SSHKEY }}
           ref: master
 
       - name: Change tag and push changes
@@ -63,21 +62,3 @@ jobs:
           git fetch
           git pull
           git push
-    
-        
-    # - name: Extract metadata (tags, labels) for Docker
-    #   id: meta
-    #   uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-    #   with:
-    #     images: ${{env.REPOSITORY_NAME}}/node-sample-application
-    
-    # - name: Build and push Docker image
-    #   uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-    #   with:
-    #     context: .
-    #     push: true
-    #     tags: ${{ steps.meta.outputs.tags }}
-    #     labels: ${{ steps.meta.outputs.labels }}
-
-
-#/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +refs/heads/2.x*:refs/remotes/origin/2.x* +refs/tags/2.x*:refs/tags/2.x*
